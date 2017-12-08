@@ -16,7 +16,8 @@ hosts = 100000
 
 comand_file = '>>'
 
-n_switches = [1, 2, 3,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32, 36, 40, 44, 48, 52, 56, 60, 64]
+#n_switches = [1, 2, 3,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32, 36, 40, 44, 48, 52, 56, 60, 64]
+n_switches = [1, 8, 16, 32, 64]
 
 #Funcao que monta o comando de Vazao
 def throughput_comand(time, loop, switches, hosts):
@@ -37,7 +38,7 @@ def throughput(controller_name, time, loop, hosts, count):
     comand = throughput_comand(time, loop, count, hosts) + comand_file + controller_name + '_vazao' +'.txt'
     return_code = subprocess.call(comand, shell=True)
     if return_code == 0:
-        pausa(60) # Pausa de n segundos para reconfiguracao do controlador
+        pausa(20) # Pausa de n segundos para reconfiguracao do controlador
     mensage(return_code)
     return return_code
  
@@ -46,7 +47,7 @@ def latency(controller_name, time, loop, hosts, count):
     comand = latency_comand(time, loop, count, hosts) + comand_file + controller_name + '_latencia' +'.txt'
     return_code = subprocess.call(comand, shell=True)
     if return_code == 0:
-        pausa(60) # Pausa de n segundos para reconfiguracao do controlador
+        pausa(20) # Pausa de n segundos para reconfiguracao do controlador
     mensage(return_code)
     return return_code
 
